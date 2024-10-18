@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Orders</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+        }
+        header {
+            background-color: #35424a;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        main {
+            text-align: center;
+            margin: 50px auto;
+            width: 50%;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: center;
+        }
+        th {
+            background-color: #35424a;
+            color: white;
+        }
+        footer {
+            background-color: #35424a;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+        button {
+            padding: 5px 10px;
+            margin: 2px;
+            border: none;
+            color: white;
+            cursor: pointer;
+        }
+        .accept-btn {
+            background-color: green;
+        }
+        .reject-btn {
+            background-color: red;
+        }
+        #message {
+            margin-top: 20px;
+            font-size: 18px;
+            color: white;
+            background-color: #35424a;
+            padding: 10px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Manage Orders</h1>
+    </header>
+    <main>
+        <table>
+            <tr>
+                <th>Order ID</th>
+                <th>Item Name</th>
+                <th>Buyer</th>
+                <th>Status</th>
+                <th>Action</th>
+            </tr>
+            <!-- Order Rows -->
+            <tr>
+                <td>1</td>
+                <td>Pepper</td>
+                <td>Buyer1</td>
+                <td>Pending</td>
+                <td>
+                    <button class="accept-btn" onclick="acceptOrder('Pepper')">Accept</button>
+                    <button class="reject-btn" onclick="rejectOrder('Pepper')">Reject</button>
+                </td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>Cardamom</td>
+                <td>Buyer2</td>
+                <td>Pending</td>
+                <td>
+                    <button class="accept-btn" onclick="acceptOrder('Cardamom')">Accept</button>
+                    <button class="reject-btn" onclick="rejectOrder('Cardamom')">Reject</button>
+                </td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>Turmeric</td>
+                <td>Buyer3</td>
+                <td>Pending</td>
+                <td>
+                    <button class="accept-btn" onclick="acceptOrder('Turmeric')">Accept</button>
+                    <button class="reject-btn" onclick="rejectOrder('Turmeric')">Reject</button>
+                </td>
+            </tr>
+            <tr>
+                <td>4</td>
+                <td>Nutmeg</td>
+                <td>Buyer1</td>
+                <td>Pending</td>
+                <td>
+                    <button class="accept-btn" onclick="acceptOrder('Nutmeg')">Accept</button>
+                    <button class="reject-btn" onclick="rejectOrder('Nutmeg')">Reject</button>
+                </td>
+            </tr>
+        </table>
+
+        
+        <div id="message"></div>
+    </main>
+    <footer>
+        <p>&copy; 2024 Spice Market</p>
+    </footer>
+
+    <script>
+        function acceptOrder(item) {
+            let messageDiv = document.getElementById('message');
+            messageDiv.style.display = 'block';
+            messageDiv.style.backgroundColor = 'green';
+            messageDiv.innerHTML = 'Order for ' + item + ' has been accepted successfully!';
+        }
+
+        function rejectOrder(item) {
+            let messageDiv = document.getElementById('message');
+            messageDiv.style.display = 'block';
+            messageDiv.style.backgroundColor = 'red';
+            messageDiv.innerHTML = 'Order for ' + item + ' has been rejected!';
+        }
+    </script>
+</body>
+</html>

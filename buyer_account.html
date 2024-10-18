@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buyer Account Management</title>
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f4f7fa;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        header {
+            background-color: #35424a;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        main {
+            margin: auto;
+            width: 100%;
+            max-width: 600px;
+            padding: 20px;
+            flex: 1;
+        }
+        form {
+            background-color: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        }
+        .profile-image-container {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .profile-image {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            border: 4px solid #3498db;
+            object-fit: cover;
+            margin-bottom: 10px;
+        }
+        .upload-btn {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .upload-btn:hover {
+            background-color: #2980b9;
+        }
+        input[type="file"] {
+            display: none;
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #2c3e50;
+            font-size: 14px;
+        }
+        input {
+            width: calc(100% - 20px);
+            padding: 15px;
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+            background-color: #f9f9f9;
+            transition: all 0.3s ease;
+        }
+        input:focus {
+            border-color: #3498db;
+            background-color: #fff;
+            outline: none;
+        }
+        button {
+            padding: 12px 20px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+            margin-bottom: 10px;
+            width: 100%;
+            display: inline-block;
+        }
+        button.update {
+            background-color: #27ae60;
+            color: white;
+        }
+        button.update:hover {
+            background-color: #2ecc71;
+        }
+        button.clear {
+            background-color: #f39c12;
+            color: white;
+        }
+        button.clear:hover {
+            background-color: #e67e22;
+        }
+        button.delete {
+            background-color: #e74c3c;
+            color: white;
+        }
+        button.delete:hover {
+            background-color: #c0392b;
+        }
+        .button-container {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+        }
+        footer {
+            background-color: #35424a;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            position: relative;
+            width: 100%;
+        }
+    </style>
+    <script>
+        function validateForm() {
+            var username = document.forms["accountForm"]["username"].value;
+            var email = document.forms["accountForm"]["email"].value;
+            var address = document.forms["accountForm"]["address"].value;
+            var city = document.forms["accountForm"]["city"].value;
+            var country = document.forms["accountForm"]["country"].value;
+            var phone = document.forms["accountForm"]["phone"].value;
+
+            if (username === "" || email === "" || address === "" || city === "" || country === "" || phone === "") {
+                alert("All fields must be filled out");
+                return false;
+            }
+            return true;
+        }
+
+        function clearForm() {
+            document.getElementById("accountForm").reset();
+            document.getElementById('profileImage').src = "https://via.placeholder.com/120";
+        }
+
+        function previewImage(event) {
+            const reader = new FileReader();
+            reader.onload = function(){
+                const output = document.getElementById('profileImage');
+                output.src = reader.result;
+            };
+            reader.readAsDataURL(event.target.files[0]);
+        }
+
+        function deleteAccount() {
+            if (confirm("Are you sure you want to delete your account? This action cannot be undone.")) {
+                // Call backend to delete account
+                window.location.href = "delete_buyer_account_backend.php"; // replace with actual backend script
+            }
+        }
+    </script>
+</head>
+<body>
+    <header>
+        <h1>Buyer Account Management</h1>
+    </header>
+    <main>
+        <form id="accountForm" name="accountForm" action="buyer_account_backend.php" method="POST" onsubmit="return validateForm()">
+            <div class="profile-image-container">
+                <img src="https://via.placeholder.com/120" alt="Profile Image" class="profile-image" id="profileImage">
+                <label class="upload-btn" for="imageUpload">Upload Image</label>
+                <input type="file" id="imageUpload" accept="image/*" onchange="previewImage(event)">
+            </div>
+
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="address">Address:</label>
+            <input type="text" id="address" name="address" required>
+
+            <label for="city">City:</label>
+            <input type="text" id="city" name="city" required>
+
+            <label for="country">Country:</label>
+            <input type="text" id="country" name="country" required>
+
+            <label for="phone">Telephone Number:</label>
+            <input type="tel" id="phone" name="phone" required>
+
+            <div class="button-container">
+                <button type="submit" class="update">Update Account</button>
+                <button type="button" class="clear" onclick="clearForm()">Clear</button>
+                <button type="button" class="delete" onclick="deleteAccount()">Delete Account</button>
+            </div>
+        </form>
+    </main>
+    <footer>
+        <p>&copy; 2024 Farmers Market</p>
+    </footer>
+</body>
+</html>

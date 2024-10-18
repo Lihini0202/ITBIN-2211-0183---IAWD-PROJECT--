@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spice Shop - Place Order</title>
+    <style>
+        /* General Styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+        }
+
+        .container {
+            width: 90%;
+            margin: 50px auto;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 36px;
+            margin-bottom: 30px;
+        }
+
+        .spice-list {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+        }
+
+        /* Spice item container - ensure uniform height and alignment */
+        .spice-item {
+            background: #fff;
+            border-radius: 10px;
+            padding: 15px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            width: 200px;
+            margin-bottom: 20px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between; /* Distribute space evenly */
+            height: 400px; /* Set a uniform height */
+        }
+
+        .spice-item img {
+            max-width: 100%;
+            height: 150px; /* Set a fixed height for the images */
+            object-fit: cover; /* Ensure the image covers the area without distortion */
+            border-radius: 10px;
+            margin-bottom: 10px;
+        }
+
+        /* Spice button alignment */
+        .spice-item button {
+            padding: 10px 20px;
+            background-color: #333;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: auto; /* Push button to the bottom */
+        }
+
+        .spice-item button:hover {
+            background-color: #555;
+        }
+
+        /* Cart Icon */
+        .cart-icon {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .cart-icon img {
+            width: 50px;
+            height: 50px;
+        }
+
+        .cart-count {
+            background-color: red;
+            color: white;
+            border-radius: 50%;
+            padding: 5px;
+            font-size: 14px;
+            margin-left: -15px;
+            margin-top: -15px;
+            position: absolute;
+        }
+
+        /* Cart Modal */
+        .cart-modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.4);
+        }
+
+        .cart-modal-content {
+            background-color: white;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 50%;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover, .close:focus {
+            color: black;
+            cursor: pointer;
+        }
+
+        .continue-shopping, .checkout {
+            padding: 10px 20px;
+            margin: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            color: white;
+        }
+
+        .continue-shopping {
+            background-color: #555;
+        }
+
+        .checkout {
+            background-color: #28a745;
+        }
+
+        .checkout:hover {
+            background-color: #218838;
+        }
+
+        .continue-shopping:hover {
+            background-color: #333;
+        }
+
+        #cart-items {
+            margin-top: 15px;
+            text-align: left;
+        }
+
+        #cart-items p {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Cart Icon in Header -->
+    <div class="cart-icon" onclick="openCartModal()">
+        <img src="cart.png" alt="Cart Icon"> <!-- Add your cart.png image here -->
+        <span class="cart-count">0</span>
+    </div>
+
+    <div class="container">
+        <h1>Our Spices</h1>
+        <div class="spice-list">
+            <!-- Cinnamon -->
+            <div class="spice-item">
+                <img src="cin.jpg" alt="Cinnamon">
+                <h3>Cinnamon</h3>
+                <p>$10 | 1kg</p>
+                <button onclick="addToCart('Cinnamon', 10)">Add to Cart</button>
+            </div>
+
+            <!-- Pepper -->
+            <div class="spice-item">
+                <img src="pepper.png" alt="Pepper">
+                <h3>Pepper</h3>
+                <p>$5 | 500g</p>
+                <button onclick="addToCart('Pepper', 5)">Add to Cart</button>
+            </div>
+
+            <!-- Cardamom -->
+            <div class="spice-item">
+                <img src="card.jpg" alt="Cardamom">
+                <h3>Cardamom</h3>
+                <p>$20 | 1.5kg</p>
+                <button onclick="addToCart('Cardamom', 20)">Add to Cart</button>
+            </div>
+
+            <!-- Green Tea -->
+            <div class="spice-item">
+                <img src="greentea.jpg" alt="Green Tea">
+                <h3>Green Tea</h3>
+                <p>$15 | 1kg</p>
+                <button onclick="addToCart('Green Tea', 15)">Add to Cart</button>
+            </div>
+
+    
+            <!-- Cumin -->
+            <div class="spice-item">
+                <img src="cumin.jpg" alt="Cumin">
+                <h3>Cumin</h3>
+                <p>$9 | 1kg</p>
+                <button onclick="addToCart('Cumin', 9)">Add to Cart</button>
+            </div>
+
+            <!-- Turmeric -->
+            <div class="spice-item">
+                <img src="turmeric.jpeg" alt="Turmeric">
+                <h3>Turmeric</h3>
+                <p>$10 | 1.5kg</p>
+                <button onclick="addToCart('Turmeric', 10)">Add to Cart</button>
+            </div>
+
+            <!-- Star Anise -->
+            <div class="spice-item">
+                <img src="star.jpg" alt="Star Anise">
+                <h3>Star Anise</h3>
+                <p>$20 | 1.5kg</p>
+                <button onclick="addToCart('Star Anise', 20)">Add to Cart</button>
+            </div>
+			
+			<!-- Mustard seed -->
+            <div class="spice-item">
+                <img src="muss.jpg" alt="Mustard seed">
+                <h3>Star Anise</h3>
+                <p>$04 | 0.5kg</p>
+                <button onclick="addToCart('Star Anise', 20)">Add to Cart</button>
+            </div>
+			
+
+            <!-- Nutmeg -->
+            <div class="spice-item">
+                <img src="nut.jpg" alt="Nutmeg">
+                <h3>Nutmeg</h3>
+                <p>$15 | 2.5kg</p>
+                <button onclick="addToCart('Nutmeg', 15)">Add to Cart</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Cart Modal -->
+    <div id="cartModal" class="cart-modal">
+        <div class="cart-modal-content">
+            <span class="close" onclick="closeCartModal()">&times;</span>
+            <h3>Your Cart</h3>
+            <div id="cart-items">
+               
+            </div>
+            <p><strong>Total:</strong> <span id="cart-total">$0.00</span></p>
+            <button class="continue-shopping" onclick="closeCartModal()">Continue Shopping</button>
+            <button class="checkout">Checkout</button>
+        </div>
+    </div>
+
+    <script>
+        let cart = [];
+        let cartCountElement = document.querySelector('.cart-count');
+        let cartItemsContainer = document.getElementById('cart-items');
+        let cartTotalElement = document.getElementById('cart-total');
+        let total = 0;
+
+        // Function to add items to the cart
+        function addToCart(itemName, itemPrice) {
+            // Check if the item is already in the cart
+            const existingItem = cart.find(item => item.name === itemName);
+
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cart.push({ name: itemName, price: itemPrice, quantity: 1 });
+            }
+
+            // Update total and display cart count
+            total += itemPrice;
+            updateCart();
+        }
+
+        // Function to update the cart display
+        function updateCart() {
+            cartCountElement.textContent = cart.length;
+            cartItemsContainer.innerHTML = '';
+
+            cart.forEach(item => {
+                cartItemsContainer.innerHTML += `<p>${item.name} (x${item.quantity}) - $${item.price * item.quantity}</p>`;
+            });
+
+            cartTotalElement.textContent = `$${total.toFixed(2)}`;
+        }
+
+        // Open Cart Modal
+        function openCartModal() {
+            document.getElementById('cartModal').style.display = 'block';
+        }
+
+        // Close Cart Modal
+        function closeCartModal() {
+            document.getElementById('cartModal').style.display = 'none';
+        }
+
+        // Close modal if clicked outside of content
+        window.onclick = function(event) {
+            let modal = document.getElementById('cartModal');
+            if (event.target === modal) {
+                modal.style.display = 'none';
+            }
+        }
+    </script>
+</body>
+</html>

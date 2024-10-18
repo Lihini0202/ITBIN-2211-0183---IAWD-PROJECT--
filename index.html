@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <title>Island Spice Market</title>
+    <style>
+        /* Global Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: black; /* Light background */
+            color: #333; /* Dark text for contrast */
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* Header Styles */
+        header {
+            background-color:black; 
+            color: white;
+            padding: 20px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+        }
+
+        .header-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav-links li {
+            margin-left: 20px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: white;
+            font-weight: 600;
+            padding: 8px 15px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .nav-links a:hover {
+            background-color: #ddd; /* Light hover effect */
+        }
+
+        .logo {
+            max-width: 100px;
+        }
+
+        /* Main Content */
+        main {
+            flex: 1;
+            padding: 20px;
+            text-align: center;
+        }
+
+        /* Intro Section */
+        .intro {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff; /* White background for contrast */
+            border-radius: 10px;
+            max-width: 1200px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            flex-direction: column;
+            color: #333;
+        }
+
+        .intro-img {
+            width: 100%;
+            max-width: 500px;
+            margin-bottom: 20px;
+            border-radius: 10px;
+        }
+
+        .intro h2 {
+            font-size: 2rem;
+            color: #333;
+        }
+
+        /* Blogs Section */
+        .blogs {
+            margin-top: 30px;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            gap: 20px;
+            padding: 0 20px;
+        }
+
+        .blog {
+            background-color: #fff;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+		
+		.blogs h2 {
+           color: #fff; /* White color for the heading */
+           font-size: 2rem;
+           margin-bottom: 20px;
+        }
+
+
+        .blog:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .blog img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+        }
+
+        .blog-content {
+            padding: 15px;
+        }
+
+        .blog h3 {
+            color:white;
+            font-size: 1.2rem;
+            margin-bottom: 8px;
+        }
+
+        .blog p {
+            font-size: 0.9rem;
+            color: #666; /* Gray text for paragraphs */
+        }
+
+        .read-more {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 8px 12px;
+            background-color: #ffcc33; /* Highlight color */
+            color: #333;
+            text-decoration: none;
+            font-weight: 600;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .read-more:hover {
+            background-color: #ffb833; /* Darker highlight on hover */
+        }
+
+        /* Footer */
+        footer {
+            background-color: black; 
+            color: white;
+            text-align: center;
+            padding: 20px;
+            box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+            }
+
+            .nav-links {
+                margin-top: 10px;
+            }
+
+            .nav-links li {
+                margin-left: 0;
+                margin-right: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <div class="header-container">
+            <img src="island.png" alt="Island Spice Logo" class="logo">
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="farmer_login.html">Farmer Login</a></li>
+                    <li><a href="buyer_login.html">Buyer Login</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <section class="intro">
+            <img src="logo.jpeg" alt="Sri Lankan Spices" class="intro-img">
+            <h2>Welcome to Island Spice</h2>
+            <p>
+                At Island Spice, we source the freshest and most aromatic Sri Lankan spices. Our selection boasts all the essentials for creating authentic Sri Lankan dishes, or adding an exotic touch to your everyday cooking. 
+            </p>
+            <p>
+                Explore our website and discover the magic of Sri Lankan spices. We offer a variety of options to suit your needs, from single spices to curated blends designed to bring Sri Lankan culinary traditions to life in your kitchen.
+            </p>
+        </section>
+
+        <!-- Blogs Section -->
+        <section class="blogs">
+            <h2>Our Spices</h2>
+            <div class="blog">
+                <img src="cinnamon.jpg" alt="Cinnamon">
+                <div class="blog-content">
+                    <h3>Cinnamon</h3>
+                    <p>Cinnamon from Sri Lanka is known for its sweet aroma and flavor. It is used in both sweet and savory dishes worldwide. <a href="cinnamon.html" class="read-more">Read More</a></p>
+                </div>
+            </div>
+            <div class="blog">
+                <img src="black_pepper.jpg" alt="Black Pepper">
+                <div class="blog-content">
+                    <h3>Black Pepper</h3>
+                    <p>Sri Lankan black pepper is famed for its pungency and robust flavor, making it a staple in many cuisines. <a href="black_pepper.html" class="read-more">Read More</a></p>
+                </div>
+            </div>
+            <div class="blog">
+                <img src="cardamom.jpeg" alt="Cardamom">
+                <div class="blog-content">
+                    <h3>Cardamom</h3>
+                    <p>Known as the 'Queen of Spices,' Sri Lankan cardamom has a strong, unique taste with an intensely aromatic fragrance. <a href="cardamom.html" class="read-more">Read More</a></p>
+                </div>
+            </div>
+            <div class="blog">
+                <img src="cloves.jpg" alt="Cloves">
+                <div class="blog-content">
+                    <h3>Cloves</h3>
+                    <p>Cloves from Sri Lanka are valued for their rich flavor and aroma, used in various culinary and medicinal applications. <a href="cloves.html" class="read-more">Read More</a></p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer Section -->
+    <footer>
+        <p>&copy; 2024 Island Spice Market</p>
+    </footer>
+</body>
+</html>
